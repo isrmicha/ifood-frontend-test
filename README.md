@@ -1,3 +1,7 @@
+### Preview
+
+![Spotifood](https://i.imgur.com/S8dQHHf.png)
+
 # [DEMO](https://isrmicha-spotifood.herokuapp.com/) | [SOURCE](https://github.com/isrmicha/ifood-frontend-test) 
 
 * Required enviroment variables*
