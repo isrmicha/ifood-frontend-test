@@ -11,7 +11,7 @@ This application requires [Node.js](https://nodejs.org/) v10+ to run.
 
 ```sh
 $ npm install
-$ npm start & node server
+$ npm run start:dev & node server
 ```
 
 #### Open the application on http://localhost:4200
