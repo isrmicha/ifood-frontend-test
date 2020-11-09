@@ -1,3 +1,22 @@
+# [DEMO](https://isrmicha-spotifood.herokuapp.com/) | [SOURCE](https://github.com/isrmicha/ifood-frontend-test) 
+
+* Required enviroment variables*
+    * client_id
+    * client_secre
+    * redirect_uri
+
+### How to 
+
+This application requires [Node.js](https://nodejs.org/) v10+ to run.
+
+```sh
+$ npm install
+$ npm start & node server
+```
+
+#### Open the application on http://localhost:4200
+
+---
 # iFood Frontend Test
 
 Create a web application called Spotifood used to display the preferred playlists from iFood's customers. The web application has only one page:
