@@ -46,49 +46,51 @@ export const Playlists = ({
 
   return (
     <Container>
-
-    <Collapse
-      accordion
-      onChange={(index) => {
-        if (!index) return
-        fetchTracks(filteredPlaylist[index]?.tracks?.href)
-      }}
-    >
-      {filteredPlaylist?.map((item, index) => (
-        <React.Fragment key={item?.id}>
-          <Panel header={item.name} key={index}>
-            <List
-              itemLayout="horizontal"
-              dataSource={playlist?.playlistTracks?.items}
-              style={{ maxHeight: 400, overflow: 'auto' }}
-              renderItem={({ track }) => (
-                <RowDiv
-                  key={track.id}
-                  onClick={() => window.open(track.preview_url)}
-                >
-                  <List.Item>
-                    <List.Item.Meta
-                      avatar={
-                        <Avatar
-                          shape="square"
-                          size="large"
-                          src={track?.album?.images?.[0]?.url}
-                        />
+      <Collapse
+        accordion
+        onChange={(index) => {
+          if (!index) return
+          fetchTracks(filteredPlaylist[index]?.tracks?.href)
+        }}
+      >
+        {filteredPlaylist?.map((item, index) => (
+          <React.Fragment key={item?.id}>
+            <Panel header={item.name} key={index}>
+              <List
+                itemLayout="horizontal"
+                dataSource={playlist?.playlistTracks?.items}
+                style={{ maxHeight: 400, overflow: 'auto' }}
+                loading={playlist?.tracksLoading}
+                renderItem={({ track }) => (
+                  <RowDiv
+                    key={track.id}
+                    onClick={() => window.open(track.preview_url)}
+                  >
+                    <List.Item>
+                      <List.Item.Meta
+                        avatar={
+                          <Avatar
+                            shape="square"
+                            size="large"
+                            src={track?.album?.images?.[0]?.url}
+                          />
+                        }
+                        title={track?.name}
+                        description={track?.artists?.[0]?.name}
+                      />
+                    </List.Item>
+                    <PlayCircleTwoTone
+                      onClick={() =>
+                        track.preview_url && window.open(track.preview_url)
                       }
-                      title={track?.name}
-                      description={track?.artists?.[0]?.name}
                     />
-                  </List.Item>
-                  <PlayCircleTwoTone
-                    onClick={() => track.preview_url && window.open(track.preview_url)}
-                  />
-                </RowDiv>
-              )}
-            />
-          </Panel>
-        </React.Fragment>
-      ))}
-    </Collapse>
+                  </RowDiv>
+                )}
+              />
+            </Panel>
+          </React.Fragment>
+        ))}
+      </Collapse>
     </Container>
   )
 }

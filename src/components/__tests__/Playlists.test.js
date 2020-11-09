@@ -17,7 +17,6 @@ Object.defineProperty(window, 'matchMedia', {
   }))
 })
 
-
 const fetchFeaturedPlaylists = jest.fn()
 
 test('filter should render loading', async () => {
