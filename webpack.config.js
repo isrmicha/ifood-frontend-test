@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 
 module.exports = {
   entry: ['@babel/polyfill', './src/index.js'],
@@ -12,6 +13,11 @@ module.exports = {
     port: 4200,
     writeToDisk: false
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      IS_DEV: process.env.NODE_ENV !== 'production'
+    })
+  ],
   module: {
     rules: [
       {

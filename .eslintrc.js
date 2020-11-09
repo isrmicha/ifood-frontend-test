@@ -33,6 +33,7 @@ module.exports = {
     withRedux: 'writable',
     jest: 'writable',
     test: 'writable',
-    expect: 'writable'
+    expect: 'writable',
+    IS_DEV: 'writable'
   }
 }
