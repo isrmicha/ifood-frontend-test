@@ -1,7 +1,3 @@
-### Preview
-
-![Spotifood](https://i.imgur.com/S8dQHHf.png)
-
 # [DEMO](https://isrmicha-spotifood.herokuapp.com/) | [SOURCE](https://github.com/isrmicha/ifood-frontend-test) 
 
 * Required enviroment variables*
@@ -19,6 +15,11 @@ $ npm run start:dev & node server
 ```
 
 #### Open the application on http://localhost:4200
+
+### Preview
+
+![Spotifood](https://i.imgur.com/S8dQHHf.png)
+
 
 ---
 # iFood Frontend Test
