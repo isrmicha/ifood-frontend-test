@@ -60,7 +60,7 @@ export const Filter = ({ filter, setFilter, setTextFilter, fetchFiltersList }) =
           }
           if (id === 'limit') {
             return (
-              <Col span={8} key={id}>
+              <Col span={12} key={id}>
                 <Select
                   style={{ width: '100%' }}
                   value={filter?.values?.[id]}
@@ -83,7 +83,7 @@ export const Filter = ({ filter, setFilter, setTextFilter, fetchFiltersList }) =
           }
           if (id === 'offset') {
             return (
-              <Col span={8} key={id}>
+              <Col span={12} key={id}>
                 <Select
                   style={{ width: '100%' }}
                   value={filter?.values?.[id]}
