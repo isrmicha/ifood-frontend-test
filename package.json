@@ -6,7 +6,7 @@
   "author": "israel.micha <israel.micha@intelie.com.br>",
   "license": "MIT",
   "scripts": {
-    "start": "node server",
+    "start": "npm i && node server",
     "start:dev": "webpack-dev-server --watch",
     "test": "jest",
     "lint": "npm run eslint src --fix"
