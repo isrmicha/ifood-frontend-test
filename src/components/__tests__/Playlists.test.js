@@ -16,6 +16,9 @@ Object.defineProperty(window, 'matchMedia', {
     dispatchEvent: jest.fn()
   }))
 })
+
+window.IS_DEV = true
+
 const fetchFeaturedPlaylists = jest.fn()
 test('filter should render loading', async () => {
   const { container } = render(<Playlists fetchFeaturedPlaylists={fetchFeaturedPlaylists} playlist={{ loading: true }}/>)
