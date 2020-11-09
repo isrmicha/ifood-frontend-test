@@ -8,8 +8,12 @@ on:
 jobs:
   lint-test:
     name: CI Pipeline
-    runs-on: node:12.19.0-alpine3.12
+    runs-on: ubuntu-latest
     steps:
+      - name: Use Node.js 12.1.0
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.1.0
       - name: Install dependencies
         run: npm i
       - name: Checking lint
