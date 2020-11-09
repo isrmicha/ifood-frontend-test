@@ -2,7 +2,7 @@
 
 * Required enviroment variables*
     * client_id
-    * client_secre
+    * client_secret
     * redirect_uri
 
 ### How to 
