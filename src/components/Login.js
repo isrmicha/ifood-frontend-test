@@ -1,26 +1,32 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Button, Typography } from 'antd'
+import { Button, Typography, Layout } from 'antd'
 import { LoginOutlined } from '@ant-design/icons'
 import { LOGIN_URL } from '../consts'
 import Logo from '../../assets/redSpotify.png'
 
+const { Content } = Layout
+
 const { Title } = Typography
 
 const Login = () => (
-  <CenteredDiv>
-    <StyledImg src={Logo} />
-    <Title>Spotifood</Title>
-    <Button
-      type="primary"
-      shape="round"
-      icon={<LoginOutlined />}
-      size={'large'}
-      href={LOGIN_URL}
-    >
-      Login with Spotify
-    </Button>
-  </CenteredDiv>
+  <Layout style={{ height: '100%' }}>
+    <Content style={{ padding: '0 10px' }}>
+      <CenteredDiv>
+        <StyledImg src={Logo} />
+        <Title>Spotifood</Title>
+        <Button
+          type="primary"
+          shape="round"
+          icon={<LoginOutlined />}
+          size={'large'}
+          href={LOGIN_URL}
+        >
+          Login with Spotify
+        </Button>
+      </CenteredDiv>
+    </Content>
+  </Layout>
 )
 
 export default Login
