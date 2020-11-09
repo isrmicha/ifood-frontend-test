@@ -6,10 +6,12 @@
   "author": "israel.micha <israel.micha@intelie.com.br>",
   "license": "MIT",
   "scripts": {
-    "start": "npm i && webpack && node server",
+    "start": "node server",
     "start:dev": "webpack-dev-server --watch",
     "test": "jest",
-    "lint": "eslint src --fix"
+    "lint": "eslint src --fix",
+    "build": "npm i && webpack"
+
   },
   "dependencies": {
     "@ant-design/icons": "^4.2.2",
