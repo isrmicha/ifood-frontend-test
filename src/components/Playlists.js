@@ -80,7 +80,7 @@ export const Playlists = ({
                     />
                   </List.Item>
                   <PlayCircleTwoTone
-                    onClick={() => window.open(track.preview_url)}
+                    onClick={() => track.preview_url && window.open(track.preview_url)}
                   />
                 </RowDiv>
               )}

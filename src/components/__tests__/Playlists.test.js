@@ -17,9 +17,9 @@ Object.defineProperty(window, 'matchMedia', {
   }))
 })
 
-window.IS_DEV = true
 
 const fetchFeaturedPlaylists = jest.fn()
+
 test('filter should render loading', async () => {
   const { container } = render(<Playlists fetchFeaturedPlaylists={fetchFeaturedPlaylists} playlist={{ loading: true }}/>)
   expect(container.querySelector('.ant-skeleton-paragraph')).toBeTruthy()

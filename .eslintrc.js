@@ -34,6 +34,6 @@ module.exports = {
     jest: 'writable',
     test: 'writable',
     expect: 'writable',
-    IS_DEV: 'writable'
+    __DEV__: 'writable'
   }
 }

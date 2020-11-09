@@ -15,7 +15,7 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      IS_DEV: process.env.NODE_ENV !== 'production'
+      __DEV__: process.env.NODE_ENV !== 'production'
     })
   ],
   module: {

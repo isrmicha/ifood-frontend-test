@@ -16,8 +16,8 @@ Object.defineProperty(window, 'matchMedia', {
     dispatchEvent: jest.fn()
   }))
 })
+
 const fetchFiltersList = jest.fn()
-window.IS_DEV = true
 
 test('filter should render loading', async () => {
   const { container } = render(<Filter fetchFiltersList={fetchFiltersList} filter={{ loading: true }}/>)

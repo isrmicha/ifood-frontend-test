@@ -51,5 +51,10 @@
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
     "yarn": "^1.22.10"
+  },
+  "jest": {
+    "globals": {
+      "__DEV__": true
+    }
   }
 }
