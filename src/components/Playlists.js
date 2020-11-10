@@ -105,7 +105,9 @@ export default connect(mapStateToProps, {
   fetchTracks
 })(Playlists)
 
-const Container = styled.div``
+const Container = styled.div`
+  margin: 20px 0 100px 0; 
+`
 
 const RowDiv = styled.div`
   display: flex;

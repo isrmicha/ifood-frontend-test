@@ -11,7 +11,7 @@ const Playlists = React.lazy(() =>
 )
 
 const Home = () => (
-  <Layout style={{ height: '100%' }}>
+  <Layout style={{ height: '100%', overflow: 'auto' }}>
     <Header />
     <Content style={{ padding: '0 10px' }}>
       <Row justify="center">
@@ -24,13 +24,13 @@ const Home = () => (
           </Suspense>
         </Col>
       </Row>
-    </Content>
-    <Footer style={{ textAlign: 'center' }}>
+    <Footer style={{ textAlign: 'center', width: '100%', position: 'fixed', bottom: 0 }}>
       Spotifood ©{new Date().getFullYear()} Created by {' '}
       <a href="https://www.linkedin.com/in/israel-neves-micha-a78504118/" rel="noreferrer" target="_blank">
         Israel Neves Micha
       </a>
     </Footer>
+    </Content>
   </Layout>
 )
 
