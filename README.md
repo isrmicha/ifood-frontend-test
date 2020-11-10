@@ -16,6 +16,11 @@ $ npm run start:dev & node server
 
 #### Open the application on http://localhost:4200
 
+### Preview
+
+![Spotifood](https://i.imgur.com/S8dQHHf.png)
+
+
 ---
 # iFood Frontend Test
 
