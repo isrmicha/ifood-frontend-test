@@ -3,5 +3,5 @@ import reducer from './slices'
 
 export default configureStore({
   reducer,
-  devTools: __DEV__
+  devTools: true
 })
