@@ -1,32 +1,36 @@
 import React, { useEffect } from 'react'
 import { Col, DatePicker, Input, Row, Select } from 'antd'
-import { connect } from 'react-redux'
-import { fetchFiltersList, setFilter, setTextFilter } from '../actions/filter'
+import { useDispatch, useSelector } from 'react-redux'
 import Loading from './Loading'
 import Error from './Error'
 import _deburr from 'lodash/deburr'
 import styled from 'styled-components'
+import { fetchFilters, setFilter, setTextFilter } from '../slices/filter'
 const { Option } = Select
 const { Search } = Input
-const MAX_OFFSET = 1000
-export const Filter = ({ filter, setFilter, setTextFilter, fetchFiltersList }) => {
-  useEffect(() => {
-    fetchFiltersList()
-  }, [])
 
-  if (filter?.loading) return <Loading />
-  if (filter?.error) return <Error />
+const MAX_OFFSET = 1000
+
+const Filter = () => {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchFilters())
+  }, [])
+  const { loading, error, filters, values: currentValues, text } = useSelector(state => state.filter)
+  if (loading) return <Loading />
+  if (error) return <Error />
 
   return (
     <Container>
       <Row gutter={[16, 16]}>
-        {filter?.filtersList?.map(({ id, name, values, validation }) => {
+        {filters?.map?.(({ id, name, values, validation }) => {
           if (id === 'locale' || id === 'country') {
             return (
               <Col span={8} key={id}>
                 <Select
                   style={{ width: '100%' }}
-                  value={filter?.values?.[id]}
+                  value={currentValues?.values?.[id]}
                   showSearch
                   placeholder={name}
                   filterOption={(input, option) =>
@@ -35,7 +39,7 @@ export const Filter = ({ filter, setFilter, setTextFilter, fetchFiltersList }) =
                       .indexOf(_deburr(input)?.toLowerCase()) >= 0
                   }
                   defaultValue={values?.[0]?.value}
-                  onChange={(value) => setFilter({ [id]: value })}
+                  onChange={(value) => dispatch(setFilter({ [id]: value }))}
                 >
                   {values?.map(({ value, name }) => (
                     <Option key={value} value={value}>
@@ -52,8 +56,8 @@ export const Filter = ({ filter, setFilter, setTextFilter, fetchFiltersList }) =
                 <DatePicker
                   style={{ width: '100%' }}
                   showTime
-                  value={filter?.values?.[id]}
-                  onChange={(value) => setFilter({ [id]: value })}
+                  value={currentValues?.[id]}
+                  onChange={(value) => dispatch(setFilter({ [id]: value }))}
                 />
               </Col>
             )
@@ -63,10 +67,10 @@ export const Filter = ({ filter, setFilter, setTextFilter, fetchFiltersList }) =
               <Col span={12} key={id}>
                 <Select
                   style={{ width: '100%' }}
-                  value={filter?.values?.[id]}
+                  value={currentValues?.[id]}
                   showSearch
                   placeholder="Limit"
-                  onChange={(value) => setFilter({ [id]: value })}
+                  onChange={(value) => dispatch(setFilter({ [id]: value }))}
                 >
                   {Array(validation?.max)
                     .fill()
@@ -86,10 +90,10 @@ export const Filter = ({ filter, setFilter, setTextFilter, fetchFiltersList }) =
               <Col span={12} key={id}>
                 <Select
                   style={{ width: '100%' }}
-                  value={filter?.values?.[id]}
+                  value={currentValues?.[id]}
                   placeholder="Offset"
                   showSearch
-                  onChange={(value) => setFilter({ [id]: value })}
+                  onChange={(value) => dispatch(setFilter({ [id]: value }))}
                 >
                   {Array(MAX_OFFSET)
                     .fill()
@@ -109,9 +113,9 @@ export const Filter = ({ filter, setFilter, setTextFilter, fetchFiltersList }) =
       <Row>
         <Col span={24}>
           <Search
-            value={filter?.value}
+            value={text}
             placeholder="Filter playlist name by text"
-            onChange={(event) => setTextFilter(event?.target?.value)}
+            onChange={(event) => dispatch(setTextFilter(event?.target?.value))}
           />
         </Col>
       </Row>
@@ -119,13 +123,7 @@ export const Filter = ({ filter, setFilter, setTextFilter, fetchFiltersList }) =
   )
 }
 
-const mapStateToProps = ({ filter }) => ({ filter })
-
-export default connect(mapStateToProps, {
-  setFilter,
-  fetchFiltersList,
-  setTextFilter
-})(Filter)
+export default Filter
 
 const Container = styled.div`
   margin: 20px 0;

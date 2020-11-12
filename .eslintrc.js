@@ -24,7 +24,8 @@ module.exports = {
     'node/no-path-concat': 'off',
     'array-callback-return': 'off',
     'multiline-ternary': 'off',
-    camelcase: 'off'
+    camelcase: 'off',
+    'no-return-assign': 'off'
   },
   globals: {
     fireEvent: 'writable',
@@ -34,6 +35,9 @@ module.exports = {
     jest: 'writable',
     test: 'writable',
     expect: 'writable',
+    describe: 'writable',
+    afterEach: 'writable',
+    beforeEach: 'writable',
     __DEV__: 'writable'
   }
 }

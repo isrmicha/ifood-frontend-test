@@ -1,9 +1,7 @@
-import { createStore, applyMiddleware, compose } from 'redux'
-import Reducers from './reducers'
-import thunk from 'redux-thunk'
+import { configureStore } from '@reduxjs/toolkit'
+import reducer from './slices'
 
-const composeEnhancer =
-  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__?.({ name: 'Spotifood' }) ||
-  compose
-
-export default createStore(Reducers, composeEnhancer(applyMiddleware(thunk)))
+export default configureStore({
+  reducer,
+  devTools: __DEV__
+})

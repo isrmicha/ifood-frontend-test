@@ -1,20 +1,19 @@
 import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Login from './Login'
-import 'antd/dist/antd.css'
 import Home from './Home'
-import { setToken } from '../actions/auth'
+import { setAuthToken } from '../slices/auth'
+import 'antd/dist/antd.css'
 
-const Main = ({ auth, setToken }) => {
+const Main = () => {
+  const dispatch = useDispatch()
   useEffect(() => {
-    if (window?.location?.search) setToken()
+    if (window?.location?.search) dispatch(setAuthToken())
     window.history.replaceState(null, null, window.location.pathname)
   }, [])
-
-  if (!auth?.token) return <Login />
+  const authToken = useSelector(state => state?.auth?.token)
+  if (!authToken) return <Login />
   return <Home />
 }
 
-const mapStateToProps = ({ auth }) => ({ auth })
-
-export default connect(mapStateToProps, { setToken })(Main)
+export default Main

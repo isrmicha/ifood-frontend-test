@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo } from 'react'
 import { List, Avatar, Collapse } from 'antd'
-import { connect } from 'react-redux'
-import { fetchFeaturedPlaylists, fetchTracks } from '../actions/playlist'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchPlaylists, fetchTracks } from '../slices/playlist'
 import Loading from './Loading'
 import Error from './Error'
 import _deburr from 'lodash/deburr'
@@ -13,36 +13,34 @@ const REFRESH_TIME = 30000
 
 const { Panel } = Collapse
 
-export const Playlists = ({
-  fetchFeaturedPlaylists,
-  playlist,
-  filter,
-  fetchTracks,
-  auth
-}) => {
-  const debouncedFetchFeaturedPlaylists = useCallback(
-    _debounce(fetchFeaturedPlaylists, 800),
-    []
-  )
+const Playlists = () => {
+  const { values, text } = useSelector(state => state?.filter)
+  const dispatch = useDispatch()
   useEffect(() => {
-    debouncedFetchFeaturedPlaylists()
+    dispatch(fetchPlaylists())
     const interval = setInterval(() => {
-      if (auth?.token) debouncedFetchFeaturedPlaylists()
+      if (authToken) debouncedFetchPlaylists()
     }, REFRESH_TIME)
     return () => clearInterval(interval)
-  }, [filter?.values])
+  }, [values])
+  const { playlists, loading, error, playlistTracks, tracksLoading } = useSelector(state => state?.playlist)
+  const authToken = useSelector(state => state?.auth?.token)
+  const debouncedFetchPlaylists = useCallback(
+    _debounce(() => dispatch(fetchPlaylists()), 800),
+    []
+  )
   const filteredPlaylist = useMemo(
     () =>
-      playlist?.filters?.playlists?.items?.filter(({ name }) =>
+      playlists?.items?.filter?.(({ name }) =>
         _deburr(name)
           .toLowerCase()
-          .includes(_deburr(filter?.text).toLowerCase())
+          .includes(_deburr(text).toLowerCase())
       ),
-    [filter?.text, playlist?.filters?.playlists?.items]
+    [text, playlists?.items]
   )
 
-  if (playlist?.loading) return <Loading />
-  if (playlist?.error) return <Error />
+  if (loading) return <Loading />
+  if (error) return <Error />
 
   return (
     <Container>
@@ -50,17 +48,17 @@ export const Playlists = ({
         accordion
         onChange={(index) => {
           if (!index) return
-          fetchTracks(filteredPlaylist[index]?.tracks?.href)
+          dispatch(fetchTracks(filteredPlaylist[index]?.tracks?.href))
         }}
       >
-        {filteredPlaylist?.map((item, index) => (
+        {filteredPlaylist?.map?.((item, index) => (
           <React.Fragment key={item?.id}>
             <Panel header={item.name} key={index}>
               <List
                 itemLayout="horizontal"
-                dataSource={playlist?.playlistTracks?.items}
+                dataSource={playlistTracks?.items}
                 style={{ maxHeight: 400, overflow: 'auto' }}
-                loading={playlist?.tracksLoading}
+                loading={tracksLoading}
                 renderItem={({ track }) => (
                   <RowDiv
                     key={track.id}
@@ -94,16 +92,8 @@ export const Playlists = ({
     </Container>
   )
 }
-const mapStateToProps = ({ playlist, filter, auth }) => ({
-  playlist,
-  filter,
-  auth
-})
 
-export default connect(mapStateToProps, {
-  fetchFeaturedPlaylists,
-  fetchTracks
-})(Playlists)
+export default Playlists
 
 const Container = styled.div`
   margin: 20px 0 100px 0; 

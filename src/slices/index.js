@@ -1,12 +1,11 @@
-import { combineReducers } from 'redux'
 import filterReducer from './filter'
 import playlistReducer from './playlist'
 import authReducer from './auth'
-import settingsProvider from './settings'
+import settingReducer from './setting'
 
-export default combineReducers({
+export default {
   filter: filterReducer,
   playlist: playlistReducer,
   auth: authReducer,
-  settings: settingsProvider
-})
+  setting: settingReducer
+}
