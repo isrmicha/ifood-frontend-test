@@ -10,7 +10,7 @@
     "start:dev": "webpack-dev-server --watch",
     "test": "jest",
     "lint": "eslint src --fix",
-    "build": "npm i && webpack"
+    "build": "webpack"
   },
   "dependencies": {
     "@ant-design/icons": "^4.2.2",
