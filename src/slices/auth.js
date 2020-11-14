@@ -11,7 +11,9 @@ const authSlice = createSlice({
       state.token = urlParams.get('access_token')
       state.refreshToken = urlParams.get('refresh_token')
     },
-    logout: (state) => (state = initialState)
+    logout: (state) => {
+      window.location = '/'
+    }
   }
 })
 

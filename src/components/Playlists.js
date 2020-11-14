@@ -93,7 +93,7 @@ const Playlists = () => {
   )
 }
 
-export default Playlists
+export default React.memo(Playlists)
 
 const Container = styled.div`
   margin: 20px 0 100px 0; 

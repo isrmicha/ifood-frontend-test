@@ -6,8 +6,9 @@ const settingSlice = createSlice({
   name: 'settings',
   initialState,
   reducers: {
-    setComponentSize: (state, { payload }) =>
-      (state.setComponentSize = payload)
+    setComponentSize: (state, { payload }) => {
+      state.componentSize = payload
+    }
   }
 })
 

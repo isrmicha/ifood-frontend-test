@@ -17,7 +17,9 @@ const Filter = () => {
   useEffect(() => {
     dispatch(fetchFilters())
   }, [])
-  const { loading, error, filters, values: currentValues, text } = useSelector(state => state.filter)
+  const { loading, error, filters, values: currentValues, text } = useSelector(
+    (state) => state.filter
+  )
   if (loading) return <Loading />
   if (error) return <Error />
 
@@ -123,7 +125,7 @@ const Filter = () => {
   )
 }
 
-export default Filter
+export default React.memo(Filter)
 
 const Container = styled.div`
   margin: 20px 0;

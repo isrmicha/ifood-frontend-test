@@ -6,10 +6,12 @@ import { DownOutlined, LogoutOutlined } from '@ant-design/icons'
 import SubMenu from 'antd/lib/menu/SubMenu'
 import Logo from '../../assets/redSpotify.png'
 import styled from 'styled-components'
+import { useDispatch } from 'react-redux'
 
 const { Header } = Layout
 
 const HeaderComponent = () => {
+  const dispatch = useDispatch()
   return (
     <Header>
       <Row justify="center">
@@ -24,18 +26,32 @@ const HeaderComponent = () => {
               title="Components Size"
             >
               <Menu.ItemGroup title="Choose">
-                <Menu.Item key="setting:1" onClick={() => setComponentSize('small')}>
+                <Menu.Item
+                  key="setting:1"
+                  onClick={() => dispatch(setComponentSize('small'))}
+                >
                   Small
                 </Menu.Item>
-                <Menu.Item key="setting:2" onClick={() => setComponentSize('medium')}>
+                <Menu.Item
+                  key="setting:2"
+                  onClick={() => dispatch(setComponentSize('medium'))}
+                >
                   Medium
                 </Menu.Item>
-                <Menu.Item key="setting:3" onClick={() => setComponentSize('large')}>
+                <Menu.Item
+                  key="setting:3"
+                  onClick={() => dispatch(setComponentSize('large'))}
+                >
                   Large
                 </Menu.Item>
               </Menu.ItemGroup>
             </SubMenu>
-  <Menu.Item key="logout" onClick={logout} icon={<LogoutOutlined />} style={{ marginLeft: 'auto' }}>
+            <Menu.Item
+              key="logout"
+              onClick={() => dispatch(logout())}
+              icon={<LogoutOutlined />}
+              style={{ marginLeft: 'auto' }}
+            >
               Logout
             </Menu.Item>
           </Menu>
@@ -48,7 +64,7 @@ const HeaderComponent = () => {
 export default HeaderComponent
 
 const StyledCol = styled(Col)`
-    ul {
-        display: flex;
-    }
+  ul {
+    display: flex;
+  }
 `

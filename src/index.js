@@ -5,17 +5,19 @@ import store from './store'
 import { ConfigProvider } from 'antd'
 import Main from './components/Main'
 
-const Index = () => (
-  <Provider store={store}>
-    <ConnectedConfigProvider>
-      <Main />
-    </ConnectedConfigProvider>
-  </Provider>
-)
+const Index = () => {
+  return (
+    <Provider store={store}>
+      <ConnectedConfigProvider>
+        <Main />
+      </ConnectedConfigProvider>
+    </Provider>
+  )
+}
 
-const mapStateToProps = ({ settings }) => ({
-  componentSize: settings?.componentSize,
-  locale: settings?.locale
+const mapStateToProps = ({ setting }) => ({
+  componentSize: setting?.componentSize,
+  locale: setting?.locale
 })
 
 const ConnectedConfigProvider = connect(mapStateToProps)(ConfigProvider)
