@@ -30,7 +30,7 @@ const HeaderComponent = () => {
                   : 'Components Size'
               }
             >
-              <Menu.ItemGroup title="Choose">
+              <Menu.ItemGroup title={locale === 'pt-br' ? 'Escolha' : 'Choose'}>
                 <Menu.Item
                   key="componentSize:1"
                   onClick={() => dispatch(setComponentSize('small'))}
