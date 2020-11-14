@@ -13,6 +13,7 @@ const MAX_OFFSET = 1000
 
 const Filter = () => {
   const dispatch = useDispatch()
+  const locale = useSelector((state) => state?.setting?.locale?.locale)
 
   useEffect(() => {
     dispatch(fetchFilters())
@@ -26,7 +27,7 @@ const Filter = () => {
   return (
     <Container>
       <Row gutter={[16, 16]}>
-        {filters?.map?.(({ id, name, values, validation }) => {
+        {filters?.map?.(({ id, values, validation }) => {
           if (id === 'locale' || id === 'country') {
             return (
               <Col span={8} key={id}>
@@ -34,7 +35,7 @@ const Filter = () => {
                   style={{ width: '100%' }}
                   value={currentValues?.values?.[id]}
                   showSearch
-                  placeholder={name}
+                  placeholder={locale === 'pt-br' ? 'Localização' : 'Location'}
                   filterOption={(input, option) =>
                     _deburr(option.children)
                       ?.toLowerCase()
@@ -71,7 +72,7 @@ const Filter = () => {
                   style={{ width: '100%' }}
                   value={currentValues?.[id]}
                   showSearch
-                  placeholder="Limit"
+                  placeholder={locale === 'pt-br' ? 'Limite' : 'Limit'}
                   onChange={(value) => dispatch(setFilter({ [id]: value }))}
                 >
                   {Array(validation?.max)
@@ -93,7 +94,7 @@ const Filter = () => {
                 <Select
                   style={{ width: '100%' }}
                   value={currentValues?.[id]}
-                  placeholder="Offset"
+                  placeholder={locale === 'pt-br' ? 'Deslocamento' : 'Offset'}
                   showSearch
                   onChange={(value) => dispatch(setFilter({ [id]: value }))}
                 >
@@ -116,7 +117,11 @@ const Filter = () => {
         <Col span={24}>
           <Search
             value={text}
-            placeholder="Filter playlist name by text"
+            placeholder={
+              locale === 'pt-br'
+                ? 'Filtrar playlist por nome'
+                : 'Filter playlist by text'
+            }
             onChange={(event) => dispatch(setTextFilter(event?.target?.value))}
           />
         </Col>
