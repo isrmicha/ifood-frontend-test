@@ -4,30 +4,35 @@ import { Button, Typography, Layout } from 'antd'
 import { LoginOutlined } from '@ant-design/icons'
 import { LOGIN_URL } from '../consts'
 import Logo from '../../assets/redSpotify.png'
+import { useTranslation } from 'react-i18next'
 
 const { Content } = Layout
 
 const { Title } = Typography
 
-const Login = () => (
-  <Layout style={{ height: '100%' }}>
-    <Content style={{ padding: '0 10px' }}>
-      <CenteredDiv>
-        <StyledImg src={Logo} />
-        <Title>Spotifood</Title>
-        <Button
-          type="primary"
-          shape="round"
-          icon={<LoginOutlined />}
-          size={'large'}
-          href={LOGIN_URL}
-        >
-          Login with Spotify
-        </Button>
-      </CenteredDiv>
-    </Content>
-  </Layout>
-)
+const Login = () => {
+  const { t } = useTranslation()
+
+  return (
+    <Layout style={{ height: '100%' }}>
+      <Content style={{ padding: '0 10px' }}>
+        <CenteredDiv>
+          <StyledImg src={Logo} />
+          <Title>Spotifood</Title>
+          <Button
+            type="primary"
+            shape="round"
+            icon={<LoginOutlined />}
+            size={'large'}
+            href={LOGIN_URL}
+          >
+            {t('Login with Spotify')}
+          </Button>
+        </CenteredDiv>
+      </Content>
+    </Layout>
+  )
+}
 
 export default Login
 

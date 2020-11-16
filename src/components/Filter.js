@@ -6,14 +6,16 @@ import Error from './Error'
 import _deburr from 'lodash/deburr'
 import styled from 'styled-components'
 import { fetchFilters, setFilter, setTextFilter } from '../slices/filter'
+import { useTranslation } from 'react-i18next'
+
 const { Option } = Select
 const { Search } = Input
 
 const MAX_OFFSET = 1000
 
 const Filter = () => {
+  const { t } = useTranslation()
   const dispatch = useDispatch()
-  const locale = useSelector((state) => state?.setting?.locale?.locale)
 
   useEffect(() => {
     dispatch(fetchFilters())
@@ -35,7 +37,7 @@ const Filter = () => {
                   style={{ width: '100%' }}
                   value={currentValues?.values?.[id]}
                   showSearch
-                  placeholder={locale === 'pt-br' ? 'Localização' : 'Location'}
+                  placeholder={t('Location')}
                   filterOption={(input, option) =>
                     _deburr(option.children)
                       ?.toLowerCase()
@@ -72,7 +74,7 @@ const Filter = () => {
                   style={{ width: '100%' }}
                   value={currentValues?.[id]}
                   showSearch
-                  placeholder={locale === 'pt-br' ? 'Limite' : 'Limit'}
+                  placeholder={t('Limit')}
                   onChange={(value) => dispatch(setFilter({ [id]: value }))}
                 >
                   {Array(validation?.max)
@@ -94,7 +96,7 @@ const Filter = () => {
                 <Select
                   style={{ width: '100%' }}
                   value={currentValues?.[id]}
-                  placeholder={locale === 'pt-br' ? 'Deslocamento' : 'Offset'}
+                  placeholder={t('Offset')}
                   showSearch
                   onChange={(value) => dispatch(setFilter({ [id]: value }))}
                 >
@@ -117,11 +119,7 @@ const Filter = () => {
         <Col span={24}>
           <Search
             value={text}
-            placeholder={
-              locale === 'pt-br'
-                ? 'Filtrar playlist por nome'
-                : 'Filter playlist by text'
-            }
+            placeholder={t('Filter playlist by text')}
             onChange={(event) => dispatch(setTextFilter(event?.target?.value))}
           />
         </Col>

@@ -6,13 +6,19 @@ import { DownOutlined, LogoutOutlined } from '@ant-design/icons'
 import SubMenu from 'antd/lib/menu/SubMenu'
 import Logo from '../../assets/redSpotify.png'
 import styled from 'styled-components'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 
 const { Header } = Layout
 
 const HeaderComponent = () => {
+  const { t, i18n } = useTranslation()
   const dispatch = useDispatch()
-  const locale = useSelector((state) => state?.setting?.locale?.locale)
+  const setLanguage = (language) => {
+    i18n.changeLanguage(language)
+    dispatch(setLocale(language === 'pt_BR' ? 'pt-br' : language))
+  }
+
   return (
     <Header>
       <Row justify="center">
@@ -24,48 +30,40 @@ const HeaderComponent = () => {
             <SubMenu
               key="componentSize"
               icon={<DownOutlined />}
-              title={
-                locale === 'pt-br'
-                  ? 'Tamanho dos componentes'
-                  : 'Components Size'
-              }
+              title={t('Components Size')}
             >
-              <Menu.ItemGroup title={locale === 'pt-br' ? 'Escolha' : 'Choose'}>
+              <Menu.ItemGroup title={t('Choose')}>
                 <Menu.Item
                   key="componentSize:1"
                   onClick={() => dispatch(setComponentSize('small'))}
                 >
-                  {locale === 'pt-br' ? 'Pequeno' : 'Small'}
+                  {t('Small')}
                 </Menu.Item>
                 <Menu.Item
                   key="componentSize:2"
                   onClick={() => dispatch(setComponentSize('medium'))}
                 >
-                  {locale === 'pt-br' ? 'Medio' : 'Medium'}
+                  {t('Medium')}
                 </Menu.Item>
                 <Menu.Item
                   key="componentSize:3"
                   onClick={() => dispatch(setComponentSize('large'))}
                 >
-                  {locale === 'pt-br' ? 'Grande' : 'Large'}
+                  {t('Large')}
                 </Menu.Item>
               </Menu.ItemGroup>
             </SubMenu>
-            <SubMenu
-              key="locale"
-              icon={<DownOutlined />}
-              title={locale === 'pt-br' ? 'Idioma' : 'Language'}
-            >
+            <SubMenu key="locale" icon={<DownOutlined />} title={t('Language')}>
               <Menu.ItemGroup title="Choose">
                 <Menu.Item
                   key="language:1"
-                  onClick={() => dispatch(setLocale('pt-br'))}
+                  onClick={() => setLanguage('pt_BR')}
                 >
                   Portuguese
                 </Menu.Item>
                 <Menu.Item
                   key="language:2"
-                  onClick={() => dispatch(setLocale('en_US'))}
+                  onClick={() => setLanguage('en_US')}
                 >
                   English
                 </Menu.Item>
@@ -77,7 +75,7 @@ const HeaderComponent = () => {
               icon={<LogoutOutlined />}
               style={{ marginLeft: 'auto' }}
             >
-              {locale === 'pt-br' ? 'Sair' : 'Logout'}
+              {t('Logout')}
             </Menu.Item>
           </Menu>
         </StyledCol>
