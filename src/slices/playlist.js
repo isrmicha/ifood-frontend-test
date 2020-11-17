@@ -63,6 +63,7 @@ const playlistSlice = createSlice({
   initialState,
   extraReducers: {
     [fetchPlaylists.pending]: (state) => {
+      if (state?.playlistTracks) return
       state.loading = true
     },
     [fetchPlaylists.rejected]: (state, { payload }) => {
