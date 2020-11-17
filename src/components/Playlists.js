@@ -51,7 +51,7 @@ const Playlists = () => {
           dispatch(fetchTracks(filteredPlaylist[index]?.tracks?.href))
         }}
       >
-        {filteredPlaylist?.map?.((item, index) => (
+        { filteredPlaylist?.map?.((item, index) => (
           <React.Fragment key={item?.id}>
             <Panel header={item.name} key={index}>
               <List

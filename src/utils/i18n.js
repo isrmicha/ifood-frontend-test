@@ -8,7 +8,7 @@ const resources = {
       Limit: 'Limite',
       Offset: 'Deslocamento',
       'Filter playlist by text': 'Filtrar playlist por texto',
-      'Component Size': 'Tamanho dos componentes',
+      'Set component size': 'Selecionar tamanho de componentes',
       Small: 'Pequeno',
       Medium: 'Médio',
       Large: 'Grande',
@@ -17,13 +17,12 @@ const resources = {
       Logout: 'Sair',
       'Logout Logout': 'Sair',
       'Login with Spotify': 'Entrar com spotify',
-      'Components Size': 'Tamanho dos componentes'
+      'Components Size': 'Tamanho dos componentes',
+      'Set language': 'Selecionar linguagem'
     }
   },
   en_US: {
-    translation: {
-
-    }
+    translation: {}
   }
 }
 
