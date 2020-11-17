@@ -16,7 +16,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       __DEV__: process.env.NODE_ENV !== 'production',
-      CLIENT_ID: process.env.client_id
+      CLIENT_ID: JSON.stringify(process.env.client_id)
     })
   ],
   module: {
