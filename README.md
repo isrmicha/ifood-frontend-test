@@ -18,7 +18,7 @@ $ npm run start:dev & node server
 
 ### Preview
 
-![Spotifood](https://i.imgur.com/S8dQHHf.png)
+![Spotifood](https://i.imgur.com/kL7Kjw0.png)
 
 
 ---
