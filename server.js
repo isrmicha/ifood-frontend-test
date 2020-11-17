@@ -3,6 +3,7 @@ const request = require('request') // "Request" library
 const cors = require('cors')
 const querystring = require('querystring')
 const cookieParser = require('cookie-parser')
+const compression = require('compression')
 const client_id = process.env.client_id
 const client_secret = process.env.client_secret
 const isDev = process.env.NODE_ENV !== 'production'
@@ -30,6 +31,7 @@ const app = express()
 app
   .use(express.static(__dirname + '/public'))
   .use(cors())
+  .use(compression())
   .use(cookieParser())
 
 app.get('/login', function (req, res) {

@@ -38,6 +38,7 @@ module.exports = {
     describe: 'writable',
     afterEach: 'writable',
     beforeEach: 'writable',
-    __DEV__: 'writable'
+    __DEV__: 'writable',
+    CLIENT_ID: 'writable'
   }
 }

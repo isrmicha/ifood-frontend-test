@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { FEATURED_PLAYLISTS_ENDPOINT } from '../consts'
+import { isTokenValid } from '../utils/auth'
+import { refreshToken } from './auth'
 
 const initialState = {
   loading: false,
@@ -9,7 +11,10 @@ const initialState = {
 
 export const fetchPlaylists = createAsyncThunk(
   'fetchPlaylists',
-  async (_, { getState }) => {
+  async (_, { getState, dispatch }) => {
+    if (!isTokenValid) {
+      dispatch(refreshToken())
+    }
     const url = new URL(FEATURED_PLAYLISTS_ENDPOINT)
     Object.keys(getState()?.filter?.values).forEach((key) => {
       const value =
