@@ -11,7 +11,8 @@ import { useTranslation } from 'react-i18next'
 const { Option } = Select
 const { Search } = Input
 
-const MAX_OFFSET = 1000
+const MAX_OFFSET = 1050
+const EXTRA_LIMIT = 5
 
 const Filter = () => {
   const { t } = useTranslation()
@@ -77,7 +78,7 @@ const Filter = () => {
                   placeholder={t('Limit')}
                   onChange={(value) => dispatch(setFilter({ [id]: value }))}
                 >
-                  {Array(validation?.max)
+                  {Array(validation?.max + EXTRA_LIMIT)
                     .fill()
                     .map((_, index) => index)
                     .filter((number) => number % 5 === 0 && number)
