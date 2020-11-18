@@ -18,7 +18,8 @@ const resources = {
       'Logout Logout': 'Sair',
       'Login with Spotify': 'Entrar com spotify',
       'Components Size': 'Tamanho dos componentes',
-      'Set language': 'Selecionar linguagem'
+      'Set language': 'Selecionar linguagem',
+      Size: 'Tamanho'
     }
   },
   en_US: {
