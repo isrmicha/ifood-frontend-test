@@ -93,7 +93,7 @@ app.get('/callback', function (req, res) {
         res.redirect(
           (isDev
             ? 'http://localhost:4200/?'
-            : 'https://isrmicha-spotifood.herokuapp.com/?') +
+            : 'https://spotifood-isrmicha.netlify.app/?') +
                 querystring.stringify({
                   access_token: access_token,
                   refresh_token: refresh_token

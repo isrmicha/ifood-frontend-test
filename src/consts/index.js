@@ -7,4 +7,4 @@ export const DEFAULT_SPOTIFY_EXPIRE_TIME = 3600000
 
 export const LOGIN_URL = __DEV__
   ? 'http://localhost:3000/login'
-  : 'https://isrmicha-spotifood.herokuapp.com/login'
+  : 'https://spotifood-isrmicha.netlify.app/login'
