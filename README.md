@@ -4,7 +4,7 @@
     * client_id
     * client_secret
     * redirect_uri
-
+    * NODE_ENV
 ### How to 
 
 This application requires [Node.js](https://nodejs.org/) v10+ to run.
