@@ -1,4 +1,4 @@
-# [DEMO](https://spotifood-isrmicha.netlify.app) | [SOURCE](https://github.com/isrmicha/ifood-frontend-test) 
+# [DEMO](https://isrmicha-spotifood.herokuapp.com/) | [SOURCE](https://github.com/isrmicha/ifood-frontend-test) 
 
 * Required enviroment variables*
     * client_id
